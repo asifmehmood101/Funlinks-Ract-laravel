@@ -19,6 +19,8 @@ import UserINFO from "./pages/Userinfo";
 import Videoplayer from "./pages/Trailer";
 import WatchMovie from "./pages/WatchMovie";
 import Watchlist from "./pages/Watchlist";
+import AdminPanel from "./pages/AdminPanel";
+import AddMovies from "./pages/AddMovies";
 
 function App() {
     return (
@@ -50,6 +52,8 @@ function App() {
                     children={<WatchMovie />}
                 ></Route>
                 <Route path="/watchlist" exact component={Watchlist} />
+                <Route path="/admin" exact component={AdminPanel} />
+                <Route path="/admin/addmovie" exact component={AddMovies} />
                 <Route path="*" exact component={Landing} />
             </Switch>
         </Router>
