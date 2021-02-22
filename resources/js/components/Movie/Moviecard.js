@@ -5,7 +5,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
+import { Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import PlayCircleOutlineRoundedIcon from "@material-ui/icons/PlayCircleOutlineRounded";
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     },
 });
 
-function Moviecard({ id, title, genre, releaseYear, image, trailerUrl }) {
+function Moviecard({ id, title, releaseYear, image }) {
     const classes = useStyles();
     const [show, setShow] = React.useState(false);
     const [addmovie, setAddmovie] = React.useState(true);

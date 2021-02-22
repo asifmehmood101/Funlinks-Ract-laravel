@@ -12,7 +12,6 @@ import Plan from "./pages/signup/Plan";
 import Payment from "./pages/signup/Payment";
 import Credit from "./pages/signup/Credit";
 import Membership from "./pages/signup/Membership";
-import Home from "./pages/Home";
 import HelpCenter from "./pages/Helpcenter";
 import Explore from "./pages/Explore";
 import UserINFO from "./pages/Userinfo";
@@ -21,6 +20,7 @@ import WatchMovie from "./pages/WatchMovie";
 import Watchlist from "./pages/Watchlist";
 import AdminPanel from "./pages/AdminPanel";
 import AddMovies from "./pages/AddMovies";
+import AdminSignin from "./pages/Admin-SignIn";
 
 function App() {
     return (
@@ -54,6 +54,7 @@ function App() {
                 <Route path="/watchlist" exact component={Watchlist} />
                 <Route path="/admin" exact component={AdminPanel} />
                 <Route path="/admin/addmovie" exact component={AddMovies} />
+                <Route path="/adminSignin" exact component={AdminSignin} />
                 <Route path="*" exact component={Landing} />
             </Switch>
         </Router>

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { Container } from "@material-ui/core";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import content from "../utility/content";
+import { Typography, Container } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import CardActions from "@material-ui/core/CardActions";
+import PlayCircleOutlineRoundedIcon from "@material-ui/icons/PlayCircleOutlineRounded";
 
 const useStyles = makeStyles({
     root: {
@@ -30,9 +29,13 @@ const useStyles = makeStyles({
         marginBottom: 12,
         color: "grey",
     },
+    Container: {
+        height: "25rem",
+    },
 });
 
-export default function Moviecard() {
+export default function Moviecard(props) {
+    const { Movie } = props;
     const classes = useStyles();
     return (
         <Card className={classes.root}>
@@ -43,8 +46,15 @@ export default function Moviecard() {
                 indicators={true}
                 scale={1.4}
             >
-                {content.map((item) => {
-                    const { image, id } = item;
+                {Movie.map((item) => {
+                    const {
+                        image,
+                        id,
+                        descreption,
+                        genre,
+                        releaseYear,
+                        title,
+                    } = item;
                     return (
                         <div className="each-slide" key={id}>
                             <div
@@ -56,7 +66,40 @@ export default function Moviecard() {
                                     backgroundPosition: "center",
                                     boxShadow: "inset 100px 100px 200px black",
                                 }}
-                            ></div>
+                            >
+                                <Container className={classes.Container}>
+                                    <Typography variant="h5">
+                                        {title} {`(${releaseYear})`}
+                                    </Typography>
+                                    <Typography variant="subtitle2">
+                                        <b>{genre}</b>
+                                    </Typography>
+                                    <Typography variant="subtitle2">
+                                        {descreption}
+                                    </Typography>
+                                    <CardActions>
+                                        <Link to={`/trailer/${id}`}>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                color="secondary"
+                                                title="Watch tailer"
+                                            >
+                                                Trailer
+                                            </Button>
+                                        </Link>
+                                        <Link to={`/watch/${id}`}>
+                                            <Button
+                                                size="small"
+                                                color="primary"
+                                                title="Play"
+                                            >
+                                                <PlayCircleOutlineRoundedIcon />
+                                            </Button>
+                                        </Link>
+                                    </CardActions>
+                                </Container>
+                            </div>
                         </div>
                     );
                 })}
