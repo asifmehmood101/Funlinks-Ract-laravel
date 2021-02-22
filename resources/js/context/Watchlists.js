@@ -29,6 +29,7 @@ function WatchlistProvider({ children }) {
             trailerUrl,
             MoiveUrl,
             genre,
+            rating,
         } = movie;
         const newMovie = {
             id,
@@ -38,6 +39,7 @@ function WatchlistProvider({ children }) {
             trailerUrl,
             MoiveUrl,
             genre,
+            rating,
         };
         console.log(movie);
         const NewWatchlist = [...Watch, newMovie];

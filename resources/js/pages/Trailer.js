@@ -22,6 +22,7 @@ function Trailer() {
         MoiveUrl,
         genre,
         descreption,
+        rating,
     } = movie;
 
     //classes
@@ -47,6 +48,8 @@ function Trailer() {
                     releaseYear={releaseYear}
                     genre={genre}
                     descreption={descreption}
+                    rating={rating}
+                    id={id}
                 />
             </Container>
         </div>

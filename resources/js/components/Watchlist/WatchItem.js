@@ -11,6 +11,7 @@ import PlayCircleOutlineRoundedIcon from "@material-ui/icons/PlayCircleOutlineRo
 import { Link } from "react-router-dom";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { WatchlistContext } from "../../context/Watchlists";
+import Rating from "@material-ui/lab/Rating";
 
 const useStyles = makeStyles({
     root: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
     },
 });
 
-function Watchitem({ id, title, genre, releaseYear, image }) {
+function Watchitem({ id, title, genre, releaseYear, image, rating }) {
     const classes = useStyles();
     const [show, setShow] = React.useState(false);
     const { MovieDelete } = React.useContext(WatchlistContext);
@@ -68,6 +69,13 @@ function Watchitem({ id, title, genre, releaseYear, image }) {
                     <Typography gutterBottom variant="subtitle1">
                         {title}({releaseYear})
                     </Typography>
+                    <Rating
+                        name="size-small"
+                        value={rating}
+                        precision={0.5}
+                        size="small"
+                        readOnly
+                    />
                 </CardContent>
             </CardActionArea>
             {show ? (

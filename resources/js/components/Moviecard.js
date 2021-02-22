@@ -5,7 +5,6 @@ import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { Typography, Container } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import PlayCircleOutlineRoundedIcon from "@material-ui/icons/PlayCircleOutlineRounded";
 
@@ -31,6 +30,10 @@ const useStyles = makeStyles({
     },
     Container: {
         height: "25rem",
+    },
+
+    button: {
+        color: "black",
     },
 });
 
@@ -79,23 +82,23 @@ export default function Moviecard(props) {
                                     </Typography>
                                     <CardActions>
                                         <Link to={`/trailer/${id}`}>
-                                            <Button
+                                            <button
                                                 size="small"
                                                 variant="outlined"
                                                 color="secondary"
                                                 title="Watch tailer"
                                             >
-                                                Trailer
-                                            </Button>
+                                                Trailers
+                                            </button>
                                         </Link>
                                         <Link to={`/watch/${id}`}>
-                                            <Button
-                                                size="small"
+                                            <button
+                                                size="large"
                                                 color="primary"
                                                 title="Play"
                                             >
                                                 <PlayCircleOutlineRoundedIcon />
-                                            </Button>
+                                            </button>
                                         </Link>
                                     </CardActions>
                                 </Container>

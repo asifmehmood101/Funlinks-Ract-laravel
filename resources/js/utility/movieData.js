@@ -10,6 +10,7 @@ export default [
         genre: "Moive",
         descreption:
             "Despite his efforts, Peter can't seem to shake his reputation for mischief among the other rabbits. Once he adventures out of the garden Peter finds himself in a world where mischief is appreciated, but soon his family come to bring him home.",
+        rating: 3.5,
     },
     {
         id: 2,
@@ -22,6 +23,7 @@ export default [
         genre: "Animation",
         descreption:
             "Despite his efforts, Peter can't seem to shake his reputation for mischief among the other rabbits. Once he adventures out of the garden Peter finds himself in a world where mischief is appreciated, but soon his family come to bring him home.",
+        rating: 3.1,
     },
     {
         id: 3,
@@ -34,5 +36,6 @@ export default [
         genre: "Animation",
         descreption:
             "Despite his efforts, Peter can't seem to shake his reputation for mischief among the other rabbits. Once he adventures out of the garden Peter finds himself in a world where mischief is appreciated, but soon his family come to bring him home.",
+        rating: 3.0,
     },
 ];

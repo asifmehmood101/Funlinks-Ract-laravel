@@ -13,6 +13,7 @@ import { WatchlistContext } from "../../context/Watchlists";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { MovieContext } from "../../context/Movies";
 import { Link } from "react-router-dom";
+import Rating from "@material-ui/lab/Rating";
 
 const useStyles = makeStyles({
     root: {
@@ -41,12 +42,12 @@ const useStyles = makeStyles({
     },
 });
 
-function Moviecard({ id, title, releaseYear, image }) {
+function Moviecard({ id, title, releaseYear, image, rating }) {
     const classes = useStyles();
     const [show, setShow] = React.useState(false);
     const [addmovie, setAddmovie] = React.useState(true);
     const { Addmovie, MovieDelete } = React.useContext(WatchlistContext);
-    const { Movie } = React.useContext(MovieContext);
+    const { Movie, HandleChange } = React.useContext(MovieContext);
 
     const movie = Movie.find((video) => video.id === parseInt(id));
 
@@ -74,6 +75,13 @@ function Moviecard({ id, title, releaseYear, image }) {
                     <Typography gutterBottom variant="subtitle2">
                         {title}({releaseYear})
                     </Typography>
+                    <Rating
+                        name="size-small"
+                        value={rating}
+                        precision={0.5}
+                        size="small"
+                        readOnly
+                    />
                 </CardContent>
             </CardActionArea>
             {show ? (
@@ -81,7 +89,6 @@ function Moviecard({ id, title, releaseYear, image }) {
                     <Link to={`/trailer/${id}`}>
                         <Button
                             size="small"
-                            color="primary"
                             variant="outlined"
                             color="secondary"
                             title="Watch tailer"
@@ -90,12 +97,7 @@ function Moviecard({ id, title, releaseYear, image }) {
                         </Button>
                     </Link>
                     <Link to={`/watch/${id}`}>
-                        <Button
-                            size="large"
-                            color="primary"
-                            color="primary"
-                            title="Play"
-                        >
+                        <Button size="large" color="primary" title="Play">
                             <PlayCircleOutlineRoundedIcon />
                         </Button>
                     </Link>

@@ -8,9 +8,10 @@ import HomeNavbar from "../Partials/Homenavbar";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
+import Modal from "@material-ui/core/Modal";
 
 //style
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     mainContainer: {
         backgroundColor: "#0c111b",
         height: "100vh  ",
@@ -38,13 +39,27 @@ const useStyles = makeStyles({
         marginBottom: 12,
         lineHeight: 2.5,
     },
-});
+    paper: {
+        position: "absolute",
+        width: 400,
+        backgroundColor: "#ffff",
+        border: "2px solid #000",
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+}));
 
 function Userinfo() {
     const classes = useStyles();
     const [user, setUser] = React.useState({});
     const [subscription, setSubscription] = React.useState({});
     const [payment, setPayment] = React.useState({});
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => setOpen(true);
+
+    const handleClose = () => setOpen(false);
+
     const userInfo = () => {
         axios.get("http://127.0.0.1:8000/api/user/userinfo").then((res) => {
             setUser(res.data);
@@ -58,7 +73,7 @@ function Userinfo() {
                 setSubscription(res.data);
             });
     };
-    
+
     React.useEffect(() => {
         userInfo();
         return setUser({});
@@ -69,13 +84,28 @@ function Userinfo() {
     const history = useHistory();
     const deleteUser = () => {
         axios
-            .delete(`http://127.0.0.1:8000/api/user/userCancelSubscription/${id}`)
+            .delete(
+                `http://127.0.0.1:8000/api/user/userCancelSubscription/${id}`
+            )
             .then((res) => {
-                if(res.data){
-                    history.push('/')
+                if (res.data) {
+                    history.push("/");
                 }
             });
-    }
+    };
+    const body = (
+        <div className={classes.paper}>
+            <h2 id="simple-modal-title">
+                Are you Sure Want to Delete Your Membership 😭?
+            </h2>
+            <p id="simple-modal-description">
+                <b>BEFORE CONTINUE WE WARN YOU!</b>{" "}
+                {"YOUR ACCOUNT WILL REMOVE PERMENTANTLY AND YOU NEED TO RESUB TO FUNLINK again if you need our serves".toLowerCase()}
+            </p>
+            <Button onClick={deleteUser}>OK</Button>
+            <Button onClick={handleClose}>Exit</Button>
+        </div>
+    );
     return (
         <div className={classes.mainContainer}>
             <Toolbar style={{ margin: 0, padding: 0 }}>
@@ -139,18 +169,21 @@ function Userinfo() {
                                 <CardActions>
                                     <Button
                                         type="submit"
-                                        className={
-                                            classes.SignupBtn
-                                        }
+                                        className={classes.SignupBtn}
                                         variant="contained"
                                         color="secondary"
                                         fullWidth
-                                        onClick={deleteUser}
+                                        onClick={handleOpen}
+                                        type="button"
+                                       
                                     >
                                         <Typography variant="h6">
                                             Cancel Membership
                                         </Typography>
                                     </Button>
+                                    <Modal open={open} onClose={handleClose}>
+                                        {body}
+                                    </Modal>
                                 </CardActions>
                             </Container>
                         </Container>

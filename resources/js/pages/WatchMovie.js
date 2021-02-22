@@ -26,6 +26,7 @@ function WatchMovie() {
         MoiveUrl,
         genre,
         descreption,
+        rating,
     } = movie;
 
     //classes
@@ -51,6 +52,8 @@ function WatchMovie() {
                     releaseYear={releaseYear}
                     genre={genre}
                     descreption={descreption}
+                    rating={rating}
+                    id={id}
                 />
             </Container>
         </div>
